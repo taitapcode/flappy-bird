@@ -121,7 +121,7 @@ class Game:
         menu_rect = self.menu_img.get_rect(midtop=(WIDTH / 2, 110))
         screen.blit(self.menu_img, menu_rect)
 
-    def is_collision(self: any, pipes: Pipes, bird: Bird) -> bool:
+    def is_collision(self: any, pipes: Pipes, bird: Bird):
         for pipe in pipes.pipe_list:
             if bird.rect.colliderect(pipe):
                 lost_sound.play()
