@@ -37,17 +37,17 @@ lost_sound.set_volume(0.35)
 
 class Bird:
     def __init__(self: any):
-        self.bird_down = pygame.transform.scale(bird_downflap_img, (50, 35))
-        self.bird_mid = pygame.transform.scale(bird_midflap_img, (50, 35))
-        self.bird_up = pygame.transform.scale(bird_upflap_img, (50, 35))
+        self.down_flap_img = pygame.transform.scale(bird_downflap_img, (50, 35))
+        self.mid_flap_img = pygame.transform.scale(bird_midflap_img, (50, 35))
+        self.up_flap_img = pygame.transform.scale(bird_upflap_img, (50, 35))
         self.GRAVITY = 0.1
         self.movement = 0
         self.x = 100
         self.y = 200
-        self.list_animations = [self.bird_down, self.bird_mid, self.bird_up, self.bird_mid]
+        self.list_animations = [self.down_flap_img, self.mid_flap_img, self.up_flap_img, self.mid_flap_img]
         self.animation_index = 0
-        self.bird_img = self.list_animations[self.animation_index]
-        self.rect = self.bird_img.get_rect(center=(self.x, self.y))
+        self.img = self.list_animations[self.animation_index]
+        self.rect = self.img.get_rect(center=(self.x, self.y))
         self.BIRD_FLAP = pygame.USEREVENT + 1
 
         pygame.time.set_timer(self.BIRD_FLAP, 200)
@@ -62,7 +62,7 @@ class Bird:
 
     def draw(self: any):
         self.movement += self.GRAVITY
-        rotate_bird = self.rotate_bird(self.bird_img)
+        rotate_bird = self.rotate_bird(self.img)
         self.rect.centery += self.movement
         screen.blit(rotate_bird, self.rect)
 
@@ -186,7 +186,7 @@ class Game:
                 else:
                     self.bird.animation_index = 0
 
-                self.bird.bird_img, self.bird.rect = self.bird.animations()
+                self.bird.img, self.bird.rect = self.bird.animations()
 
         if self.is_start:
             # Bird
@@ -209,11 +209,10 @@ class Game:
             self.base_x = 0
         self.score_display()
 
-        pygame.display.update()
-
     def run(self: any):
         while True:
             self.update_game()
+            pygame.display.update()
 
 
 game = Game()
