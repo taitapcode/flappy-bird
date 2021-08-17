@@ -159,7 +159,7 @@ class Game:
 
     def update_game(self: any):
         screen.fill(colors['black'])
-        screen.blit(game.bg_img, (0, 0))
+        screen.blit(self.bg_img, (0, 0))
         clock.tick(120)
 
         for event in pygame.event.get():
@@ -197,7 +197,7 @@ class Game:
             self.pipes.draw()
 
             self.check_score(self.pipes)
-            self.is_start = game.is_collision(self.pipes, self.bird)
+            self.is_start = self.is_collision(self.pipes, self.bird)
         else:
             self.draw_menu()
             self.update_high_score()
@@ -214,6 +214,4 @@ class Game:
             self.update_game()
             pygame.display.update()
 
-
-game = Game()
-game.run()
+Game().run()
