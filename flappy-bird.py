@@ -214,4 +214,6 @@ class Game:
             self.update_game()
             pygame.display.update()
 
-Game().run()
+# Run
+if __name__ == "__main__":
+    Game().run()
