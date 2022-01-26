@@ -216,4 +216,5 @@ class Game:
 
 # Run
 if __name__ == "__main__":
-    Game().run()
+    game = Game()
+    game.run()
