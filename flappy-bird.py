@@ -1,6 +1,7 @@
 import pygame, sys, random
 from settings import *
 
+
 class Bird:
     def __init__(self, x: int, y: int, jump_high: int):
         self.down_flap_img = pygame.transform.scale(BIRD_DOWNFLAP_IMAGE, (50, 35))
@@ -15,7 +16,7 @@ class Bird:
             self.down_flap_img,
             self.mid_flap_img,
             self.up_flap_img,
-            self.mid_flap_img
+            self.mid_flap_img,
         ]
         self.animation_index = 0
         self.img = self.list_animations[self.animation_index]
@@ -45,7 +46,6 @@ class Bird:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE or not is_start:
                 self.movement = -self.jump_high
-
 
     def draw(self):
         self.movement += self.GRAVITY
@@ -165,15 +165,17 @@ class Game:
 
     def draw_score(self):
         if self.is_start:
-            score_text = MAIN_FONT.render(str(self.score), True, COLORS['white'])
+            score_text = MAIN_FONT.render(str(self.score), True, COLORS["white"])
             score_rect = score_text.get_rect(midtop=(WIDTH / 2, 50))
             SCREEN.blit(score_text, score_rect)
         else:
-            score_text = MAIN_FONT.render(f'Score: {self.score}', True, COLORS['white'])
+            score_text = MAIN_FONT.render(f"Score: {self.score}", True, COLORS["white"])
             score_rect = score_text.get_rect(midtop=(WIDTH / 2, 20))
             SCREEN.blit(score_text, score_rect)
 
-            high_score_text = MAIN_FONT.render(f'High Score: {self.high_score}', True, COLORS['white'])
+            high_score_text = MAIN_FONT.render(
+                f"High Score: {self.high_score}", True, COLORS["white"]
+            )
             high_score_rect = high_score_text.get_rect(midtop=(WIDTH / 2, 620))
             SCREEN.blit(high_score_text, high_score_rect)
 
@@ -198,7 +200,7 @@ class Game:
 
     def update_game(self):
         SCREEN.blit(self.bg_img, (0, 0))
-        clock.tick(120) # Lock FPS
+        clock.tick(120)  # Lock FPS
         self.handle_game_event()
         self.draw()
         self.base_movement()
@@ -207,6 +209,7 @@ class Game:
         while True:
             self.update_game()
             pygame.display.update()
+
 
 # Main
 if __name__ == "__main__":
